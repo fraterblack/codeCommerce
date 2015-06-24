@@ -1,27 +1,17 @@
 <?php namespace CodeCommerce\Http\Controllers;
 
-class WelcomeController extends Controller {
+use CodeCommerce\Category;
 
-	/*
-	|--------------------------------------------------------------------------
-	| Welcome Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders the "marketing page" for the application and
-	| is configured to only allow guests. Like most of the other sample
-	| controllers, you are free to modify or remove it as you desire.
-	|
-	*/
+class WelcomeController extends Controller
+{
+    private $categories;
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
+	public function __construct(Category $category)
 	{
-		$this->middleware('guest');
-	}
+        $this->middleware('guest');
+
+        $this->categories = $category;
+    }
 
 	/**
 	 * Show the application welcome screen to the user.
@@ -35,10 +25,9 @@ class WelcomeController extends Controller {
 
     public function exemplo()
     {
-        $nome = "Daiane";
-        $sobrenome = "da Silva";
+        $categories = $this->categories->all();
 
-        return view('exemplo', compact('nome', 'sobrenome'));
+        return view('exemplo', compact('categories'));
     }
 
 }
