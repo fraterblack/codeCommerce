@@ -38,7 +38,10 @@ Route::group(['prefix'=>'admin'], function(){
 });
 
 //ESTUDOS
+Route::get('/categories', 'CategoriesController@index');
+
 Route::get('/', 'WelcomeController@index');
+
 Route::get('exemplo', 'WelcomeController@exemplo');
 
 Route::get('home', 'HomeController@index');
