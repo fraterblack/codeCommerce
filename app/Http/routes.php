@@ -39,7 +39,12 @@ Route::group(['prefix'=>'admin'], function(){
 
 //ESTUDOS
 Route::get('/categories', 'CategoriesController@index');
+
 Route::get('/categories/create', 'CategoriesController@create');
+Route::post('/categories', 'CategoriesController@store');
+
+
+
 
 Route::get('/', 'WelcomeController@index');
 
