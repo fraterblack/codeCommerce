@@ -29,11 +29,31 @@ class CategoriesController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        $input = $request->all();
-
-        $category = $this->categoryModel->fill($input);
+        $category = $this->categoryModel->fill($request->all());
         $category->save();
 
-        return redirect('categories');
+        return redirect()->route('categories');
+    }
+
+    public function edit($id)
+    {
+        $category = $this->categoryModel->find($id);
+
+        return view("categories.edit", compact('category'));
+    }
+
+    public function update(CategoryRequest $request, $id)
+    {
+        $this->categoryModel->find($id)->update($request->all());
+
+        return redirect()->route('categories');
+    }
+
+
+    public function destroy($id)
+    {
+        $this->categoryModel->find($id)->delete();
+
+        return redirect()->route('categories');
     }
 }
