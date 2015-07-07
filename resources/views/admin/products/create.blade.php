@@ -14,6 +14,11 @@
         {!! Form::open(['route' => 'admin.products.store']) !!}
 
         <div class="form-group">
+            {!! Form::label('category_id', 'Categoria:') !!}
+            {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::label('name', 'Nome:') !!}
             {!! Form::text('name', null, ['class' => 'form-control']) !!}
         </div>
@@ -36,7 +41,7 @@
             <div class="col-xs-5 col-md-2">
                 <div class="form-group">
                     {!! Form::label('featured', 'Destacar:') !!}
-                    {!! Form::select('featured', ['true' => 'Sim', 'false' => 'Não'], 'false') !!}
+                    {!! Form::select('featured', ['1' => 'Sim', '0' => 'Não'], '0') !!}
                 </div>
             </div>
         </div>
@@ -45,13 +50,14 @@
             <div class="col-xs-5 col-md-2">
                 <div class="form-group">
                     {!! Form::label('recommend', 'Recomendar:') !!}
-                    {!! Form::select('recommend', ['true' => 'Sim', 'false' => 'Não'], 'false') !!}
+                    {!! Form::select('recommend', ['1' => 'Sim', '0' => 'Não'], '0') !!}
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             {!! Form::submit('Adicionar Produto', ['class' => 'btn btn-primary']) !!}
+            <a class="btn btn-default" href="{{ route('admin.products') }}">Voltar</a>
         </div>
 
         {!! Form::close() !!}

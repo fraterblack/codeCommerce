@@ -12,16 +12,13 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('products');
-
-        Schema::create('products', function(Blueprint $table)
-        {
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 80);
             $table->text("description");
             $table->float("price");
-            $table->boolean("featured")->default('false');
-            $table->boolean("recommend")->default('false');
+            $table->boolean("featured")->default('0');
+            $table->boolean("recommend")->default('0');
             $table->timestamps();
         });
     }

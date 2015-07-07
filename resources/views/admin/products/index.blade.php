@@ -12,6 +12,7 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Descrição</th>
+                <th>Categoria</th>
                 <th>Destacar</th>
                 <th>Recomendar</th>
                 <th>Ação</th>
@@ -21,8 +22,9 @@
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->description }}</td>
-                <td>@if ($product->featured == 'true') Sim @else Não @endif</td>
-                <td>@if ($product->recommend == 'true') Sim @else Não @endif</td>
+                <td>{{ $product->category->name }}</td>
+                <td>@if ($product->featured == '1') Sim @else Não @endif</td>
+                <td>@if ($product->recommend == '1') Sim @else Não @endif</td>
                 <td>
                     <a href="{{ route('admin.products.edit', ['id' => $product->id]) }}">Editar</a> |
                     <a href="{{ route('admin.products.destroy', ['id' => $product->id]) }}">Excluir</a>
@@ -30,5 +32,6 @@
             </tr>
             @endforeach
         </table>
+        {!! $products->render() !!}
     </div>
 @endsection
