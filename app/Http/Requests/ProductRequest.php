@@ -27,6 +27,8 @@ class ProductRequest extends Request
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
+            'featured' => 'boolean',
+            'recommend' => 'boolean'
         ];
     }
 }
