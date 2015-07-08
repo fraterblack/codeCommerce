@@ -7,10 +7,10 @@ Route::group(['prefix'=>'admin'], function(){
     //Categorias
     Route::group(['prefix'=>'categories'], function() {
         //Lista
-        Route::get('/', ['as'=>'admin.categories', 'uses' => 'AdminCategoriesController@index']);
+        Route::get('', ['as'=>'admin.categories', 'uses' => 'AdminCategoriesController@index']);
         //Cria
         Route::get('create', ['as'=>'admin.categories.create', 'uses' => 'AdminCategoriesController@create']);
-        Route::post('store', ['as'=>'admin.categories.store', 'uses' => 'AdminCategoriesController@store']);
+        Route::post('', ['as'=>'admin.categories.store', 'uses' => 'AdminCategoriesController@store']);
         //Edita
         Route::get('{id}/edit', ['as'=>'admin.categories.edit', 'uses' => 'AdminCategoriesController@edit']);
         Route::put('{id}/update', ['as'=>'admin.categories.update', 'uses' => 'AdminCategoriesController@update']);
@@ -23,10 +23,10 @@ Route::group(['prefix'=>'admin'], function(){
     //Produtos
     Route::group(['prefix'=>'products'], function() {
         //Lista
-        Route::get('/', ['as'=>'admin.products', 'uses' => 'AdminProductsController@index']);
+        Route::get('', ['as'=>'admin.products', 'uses' => 'AdminProductsController@index']);
         //Cria
         Route::get('create', ['as'=>'admin.products.create', 'uses' => 'AdminProductsController@create']);
-        Route::post('store', ['as'=>'admin.products.store', 'uses' => 'AdminProductsController@store']);
+        Route::post('', ['as'=>'admin.products.store', 'uses' => 'AdminProductsController@store']);
         //Edita
         Route::get('{id}/edit', ['as'=>'admin.products.edit', 'uses' => 'AdminProductsController@edit']);
         Route::put('{id}/update', ['as'=>'admin.products.update', 'uses' => 'AdminProductsController@update']);
