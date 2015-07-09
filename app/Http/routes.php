@@ -47,6 +47,9 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
+//LOJA
+Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
+
 //ESTUDOS
 Route::get('/categories', ['as' => 'categories', 'uses' => 'CategoriesController@index']);
 
@@ -59,7 +62,7 @@ Route::put('/categories/{id}/update', ['as' => 'categories.update', 'uses' => 'C
 Route::get('/categories/{id}/destroy', ['as' => 'categories.destroy', 'uses' => 'CategoriesController@destroy']);
 
 
-Route::get('/', 'WelcomeController@index');
+//Route::get('/', 'WelcomeController@index');
 
 Route::get('exemplo', 'WelcomeController@exemplo');
 
