@@ -7,6 +7,7 @@ use CodeCommerce\Http\Requests\ProductImageRequest;
 use CodeCommerce\Http\Requests\ProductRequest;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,10 +48,21 @@ class AdminProductsController extends Controller
      *
      * @return Response
      */
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request, Tag $tagModel)
     {
-        $category = $this->productModel->fill($request->all());
-        $category->save();
+        $product = $this->productModel->fill($request->all());
+        $product->save();
+
+        //Tags
+        $tags = array_map('trim', explode(",", $request->get('tags')));
+        $tagsId = [];
+        foreach ($tags as $tag) {
+            if (!empty($tag)) {
+                $newTag = $tagModel->firstOrCreate(['name' => $tag]);
+                $tagsId[] = $newTag->id;
+            }
+        }
+        $product->tags()->attach($tagsId);
 
         return redirect()->route('admin.products');
     }
@@ -87,9 +99,21 @@ class AdminProductsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, $id, Tag $tagModel)
     {
-        $this->productModel->find($id)->update($request->all());
+        $product = $this->productModel->find($id);
+        $product->update($request->all());
+
+        //Tags
+        $tags = array_map('trim', explode(",", $request->get('tags')));
+        $tagsId = [];
+        foreach ($tags as $tag) {
+            if (!empty($tag)) {
+                $newTag = $tagModel->firstOrCreate(['name' => $tag]);
+                $tagsId[] = $newTag->id;
+            }
+        }
+        $product->tags()->sync($tagsId);
 
         return redirect()->route('admin.products');
     }

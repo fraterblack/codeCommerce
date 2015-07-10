@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin.app')
 
 @section('content')
     <div class="container">
@@ -26,6 +26,11 @@
         <div class="form-group">
             {!! Form::label('description', 'Descrição:') !!}
             {!! Form::textarea('description', $product->description, ['class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('tags', 'Tags:') !!}
+            {!! Form::textarea('tags', $product->tag_list, ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
 
         <div class="row">
