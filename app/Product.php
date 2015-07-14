@@ -45,4 +45,9 @@ class Product extends Model
 
         return implode(', ', $tags);
     }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', '=', 1)->limit(3);
+    }
 }
