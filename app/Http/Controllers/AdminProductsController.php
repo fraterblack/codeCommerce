@@ -53,15 +53,8 @@ class AdminProductsController extends Controller
         $product = $this->productModel->fill($request->all());
         $product->save();
 
-        //Tags
-        $tags = array_map('trim', explode(",", $request->get('tags')));
-        $tagsId = [];
-        foreach ($tags as $tag) {
-            if (!empty($tag)) {
-                $newTag = $tagModel->firstOrCreate(['name' => $tag]);
-                $tagsId[] = $newTag->id;
-            }
-        }
+        $tagsId = $tagModel->store($request->get('tags'));
+
         $product->tags()->attach($tagsId);
 
         return redirect()->route('admin.products');
@@ -104,15 +97,8 @@ class AdminProductsController extends Controller
         $product = $this->productModel->find($id);
         $product->update($request->all());
 
-        //Tags
-        $tags = array_map('trim', explode(",", $request->get('tags')));
-        $tagsId = [];
-        foreach ($tags as $tag) {
-            if (!empty($tag)) {
-                $newTag = $tagModel->firstOrCreate(['name' => $tag]);
-                $tagsId[] = $newTag->id;
-            }
-        }
+        $tagsId = $tagModel->store($request->get('tags'));
+
         $product->tags()->sync($tagsId);
 
         return redirect()->route('admin.products');

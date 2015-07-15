@@ -49,9 +49,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 //LOJA
 Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
+Route::get('/category/{id}/{slug?}', ['as' => 'category', 'uses' => 'StoreController@category']);
+
 
 //ESTUDOS
-Route::get('/categories', ['as' => 'categories', 'uses' => 'CategoriesController@index']);
+/*Route::get('/categories', ['as' => 'categories', 'uses' => 'CategoriesController@index']);
 
 Route::get('/categories/create', ['as' => 'categories.create', 'uses' => 'CategoriesController@create']);
 Route::post('/categories', ['as' => 'categories.store', 'uses' => 'CategoriesController@store']);
@@ -59,7 +61,7 @@ Route::post('/categories', ['as' => 'categories.store', 'uses' => 'CategoriesCon
 Route::get('/categories/{id}/edit', ['as' => 'categories.edit', 'uses' => 'CategoriesController@edit']);
 Route::put('/categories/{id}/update', ['as' => 'categories.update', 'uses' => 'CategoriesController@update']);
 
-Route::get('/categories/{id}/destroy', ['as' => 'categories.destroy', 'uses' => 'CategoriesController@destroy']);
+Route::get('/categories/{id}/destroy', ['as' => 'categories.destroy', 'uses' => 'CategoriesController@destroy']);*/
 
 
 //Route::get('/', 'WelcomeController@index');

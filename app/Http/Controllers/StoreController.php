@@ -10,11 +10,31 @@ use CodeCommerce\Product;
 
 class StoreController extends Controller
 {
-    public function index(Category $categoryModel, Product $productModel)
-    {
-        $categories = $categoryModel->all();
-        $pFeatured = $productModel->featured()->get();
+    protected $productModel;
+    protected $categoryModel;
 
-        return view('store.index', compact('categories', 'pFeatured'));
+    public function __construct(Category $categoryModel, Product $productModel) {
+        $this->productModel = $productModel;
+        $this->categoryModel = $categoryModel;
+    }
+
+    public function index()
+    {
+        $categories = $this->categoryModel->all();
+
+        $pFeatured = $this->productModel->featured()->get();
+
+        $pRecommend = $this->productModel->recommend()->get();
+
+        return view('store.index', compact('categories', 'pFeatured', 'pRecommend'));
+    }
+
+    public function category($id)
+    {
+        $categories = $this->categoryModel->all();
+
+        $pCategory = $this->categoryModel->find($id)->products;
+
+        return view('store.list', compact('categories', 'pCategory'));
     }
 }
