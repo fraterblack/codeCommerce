@@ -49,7 +49,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 //LOJA
 Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
-Route::get('/category/{id}/{slug?}', ['as' => 'category', 'uses' => 'StoreController@category']);
+Route::get('category/{id}/{slug?}', ['as' => 'store.category', 'uses' => 'StoreController@category']);
+Route::get('tag/{id}/{slug?}', ['as' => 'store.tag', 'uses' => 'StoreController@tag']);
+Route::get('product/{id}/{slug?}', ['as' => 'store.product', 'uses' => 'StoreController@product']);
 
 
 //ESTUDOS

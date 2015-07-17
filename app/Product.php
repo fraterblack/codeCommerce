@@ -34,8 +34,6 @@ class Product extends Model
         return $this->belongsToMany('CodeCommerce\Tag');
     }
 
-
-
     public function getNameDescriptionAttribute()
     {
         return $this->name . " - " . $this->description;
@@ -56,5 +54,10 @@ class Product extends Model
     public function scopeRecommend($query)
     {
         return $query->where('recommend', '=', 1)->limit(3);
+    }
+
+    public function scopeOfCategory($query, $type)
+    {
+        return $query->where('category_id', '=', $type);
     }
 }
