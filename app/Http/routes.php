@@ -3,6 +3,7 @@
 //PROJETO
 Route::pattern('id', '[0-9]+');
 
+//Admin
 Route::group(['prefix' => 'admin'], function () {
     //Categorias
     Route::group(['prefix' => 'categories'], function () {
@@ -47,11 +48,16 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-//LOJA
+//Loja
 Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
 Route::get('category/{id}/{slug?}', ['as' => 'store.category', 'uses' => 'StoreController@category']);
 Route::get('tag/{id}/{slug?}', ['as' => 'store.tag', 'uses' => 'StoreController@tag']);
 Route::get('product/{id}/{slug?}', ['as' => 'store.product', 'uses' => 'StoreController@product']);
+//Carrinho
+Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@index']);
+Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+Route::get('cart/remove/{id}', ['as' => 'cart.remove', 'uses' => 'CartController@remove']);
+Route::get('cart/update/{id}/{qtd}/', ['as' => 'cart.update', 'uses' => 'CartController@update'])->where('qtd', '[0-9]+');;
 
 
 //ESTUDOS

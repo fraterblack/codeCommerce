@@ -12,7 +12,7 @@
                 <p>{{ $product->name }}</p>
                 <a href="{{ route('store.product', ['id' => $product->id, 'slug' => str_slug($product->name)]) }}" class="btn btn-default add-to-cart"><i class="fa fa-crosshairs"></i>Mais detalhes</a>
 
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
+                <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
             </div>
 
             <div class="product-overlay">
@@ -22,7 +22,7 @@
                     <a href="{{ route('store.product', ['id' => $product->id, 'slug' => str_slug($product->name)]) }}"
                        class="btn btn-default add-to-cart"><i class="fa fa-crosshairs"></i>Mais detalhes</a>
 
-                    <a href="#add"
+                    <a href="{{ route('cart.add', ['id' => $product->id]) }}"
                        class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>
                 </div>
             </div>

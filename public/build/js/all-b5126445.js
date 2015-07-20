@@ -449,6 +449,12 @@ $(document).ready(function(){
 	        zIndex: 2147483647 // Z-Index for the overlay
 		});
 	});
+
+    $('#cart_items').on('change', '.cart_quantity_input', function() {
+        var cartItem = $(this);
+
+        window.location = cartItem.data("uri") +"/"+ cartItem.val();
+    });
 });
 
 //# sourceMappingURL=all.js.map
