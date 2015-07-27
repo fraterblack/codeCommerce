@@ -59,7 +59,7 @@ Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']
 Route::get('cart/remove/{id}', ['as' => 'cart.remove', 'uses' => 'CartController@remove']);
 Route::get('cart/update/{id}/{qtd}/', ['as' => 'cart.update', 'uses' => 'CartController@update'])->where('qtd', '[0-9]+');
 //Checkout
-Route::get('checkout/place-order', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
 
 
 

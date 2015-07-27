@@ -10,7 +10,7 @@ class OrderItem extends Model
         'product_id',
         'price',
         'qtd'
-    ]
+    ];
     public function order()
     {
         return $this->belongsTo('CodeCommerce\Order');

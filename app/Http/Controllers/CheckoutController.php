@@ -3,14 +3,16 @@
 namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Http\Requests;
+use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
     public function place(Order $orderModel, OrderItem $orderItemModel)
     {
-        if (Session::has('cart')) {
+        if (!Session::has('cart')) {
             return false;
         }
 
@@ -27,7 +29,7 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            dd($order);
+            dd($order->items);
         }
     }
 }
