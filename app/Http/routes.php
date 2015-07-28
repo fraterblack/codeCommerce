@@ -4,7 +4,10 @@
 Route::pattern('id', '[0-9]+');
 
 //Admin
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    //Home Admin
+    Route::get('', ['as' => 'admin', 'uses' => 'AdminProductsController@index']);
+
     //Categorias
     Route::group(['prefix' => 'categories'], function () {
         //Lista
@@ -49,7 +52,8 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 //Loja
-Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
+//Route::get('', ['uses' => 'StoreController@index']);
+Route::get('/{home?}', ['as' => 'home', 'uses' => 'StoreController@index', 'where' => ['home' => '(home)*']]);
 Route::get('category/{id}/{slug?}', ['as' => 'store.category', 'uses' => 'StoreController@category']);
 Route::get('tag/{id}/{slug?}', ['as' => 'store.tag', 'uses' => 'StoreController@tag']);
 Route::get('product/{id}/{slug?}', ['as' => 'store.product', 'uses' => 'StoreController@product']);
@@ -59,9 +63,13 @@ Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']
 Route::get('cart/remove/{id}', ['as' => 'cart.remove', 'uses' => 'CartController@remove']);
 Route::get('cart/update/{id}/{qtd}/', ['as' => 'cart.update', 'uses' => 'CartController@update'])->where('qtd', '[0-9]+');
 //Checkout
-Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+Route::get('checkout/place-order', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
 
-
+//AUTH
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
 
 //ESTUDOS
 /*Route::get('/categories', ['as' => 'categories', 'uses' => 'CategoriesController@index']);
@@ -77,14 +85,10 @@ Route::get('/categories/{id}/destroy', ['as' => 'categories.destroy', 'uses' => 
 
 //Route::get('/', 'WelcomeController@index');
 
-Route::get('exemplo', 'WelcomeController@exemplo');
+//Route::get('exemplo', 'WelcomeController@exemplo');
 
-Route::get('home', 'HomeController@index');
+//Route::get('home', 'HomeController@index');
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
 
 //Passando model na rota - É necessário configurar o método boot da classe /Providers/RouteServiceProvider.php
 /*Route::get('category/{category}', function(\CodeCommerce\Category $category) {

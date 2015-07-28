@@ -15,9 +15,13 @@
 									<li>{{ $error }}</li>
 								@endforeach
 							</ul>
+==
 						</div>
 					@endif
 
+                    @if (Session::has('alert_admin'))
+                        <div class="alert alert-warning">{{ Session::get('alert_admin') }}</div>
+                    @endif
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 

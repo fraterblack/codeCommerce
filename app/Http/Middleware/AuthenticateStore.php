@@ -3,7 +3,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Authenticate {
+class AuthenticateStore {
 
 	/**
 	 * The Guard implementation.
@@ -43,14 +43,6 @@ class Authenticate {
 				return redirect()->guest('auth/login');
 			}
 		}
-
-        if ($this->auth->user()->is_admin != 1) {
-            $this->auth->logout();
-
-            $request->session()->flash('alert_admin', 'Somente usuários administradores podem acessar a área administrativa.');
-
-            return redirect()->guest('auth/login');
-        }
 
 		return $next($request);
 	}

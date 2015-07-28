@@ -6,20 +6,23 @@ use CodeCommerce\Http\Requests;
 use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.store');
+    }
+
     public function place(Order $orderModel, OrderItem $orderItemModel)
     {
-        if (!Session::has('cart')) {
-            return false;
-        }
+        //Se existe item no carrinho de compras
+        if (Session::has('cart') && Session::get('cart')->getTotal() > 0) {
+            $cart = Session::get('cart');
 
-        $cart = Session::get('cart');
-
-        if ($cart->getTotal() > 0) {
-            $order = $orderModel->create(['user_id' => 1, 'total' => $cart->getTotal()]);
+           $order = $orderModel->create(['user_id' => Auth::user()->id, 'total' => $cart->getTotal()]);
 
             foreach ($cart->all() as $k=>$item) {
                 $order->items()->create([
@@ -29,7 +32,14 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            dd($order->items);
+            //Limpa carrinho
+            Session::remove('cart');
+
+            return "O pedido foi fechado com sucesso!";
+
+            dd($order);
+        } else {
+            return redirect()->route('cart');
         }
     }
 }
