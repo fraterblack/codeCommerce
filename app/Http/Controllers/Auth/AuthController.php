@@ -2,7 +2,7 @@
 
 use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\User;
-use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 use Illuminate\Contracts\Auth\Guard;
@@ -42,14 +42,14 @@ class AuthController extends Controller {
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-   /* public function validator(array $data)
+   public function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
-    }*/
+    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -57,14 +57,14 @@ class AuthController extends Controller {
      * @param  array  $data
      * @return User
      */
-    /*public function create(array $data)
+    public function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }*/
+    }
 
     //Sobreescreve método da Trait Illuminate\Foundation\Auth\RedirectsUsers;
     public function redirectPath()
