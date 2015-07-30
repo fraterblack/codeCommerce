@@ -2,9 +2,8 @@
 
 namespace CodeCommerce\Http\Controllers;
 
-use CodeCommerce\Http\Requests\CategoryRequest;
 use CodeCommerce\Category;
-use CodeCommerce\Http\Controllers\Controller;
+use CodeCommerce\Http\Requests\CategoryRequest;
 
 class CategoriesController extends Controller
 {

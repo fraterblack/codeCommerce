@@ -21,4 +21,26 @@ class Order extends Model
     {
         return $this->belongsTo('CodeCommerce\User');
     }
+
+    public function getTextStatusAttribute()
+    {
+        $textStatus = "Não conhecido";
+
+        switch ($this->status) {
+            case 0:
+                $textStatus = "Aguardando o pagamento";
+                break;
+            case 1:
+                $textStatus = "Aguardando o envio";
+                break;
+            case 2:
+                $textStatus = "Enviado";
+                break;
+            case 3:
+                $textStatus = "Entregue";
+                break;
+        }
+
+        return $textStatus;
+    }
 }

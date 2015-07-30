@@ -2,10 +2,8 @@
 
 namespace CodeCommerce\Http\Controllers;
 
-use Illuminate\Http\Request;
-use CodeCommerce\Http\Requests;
-use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Category;
+use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
 use CodeCommerce\Tag;
 

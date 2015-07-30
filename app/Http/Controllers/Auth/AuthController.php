@@ -1,12 +1,10 @@
 <?php namespace CodeCommerce\Http\Controllers\Auth;
 
 use CodeCommerce\Http\Controllers\Controller;
-use CodeCommerce\User;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Routing\Registrar;
+use CodeCommerce\User;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -29,11 +27,8 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct(Guard $auth, Registrar $registrar)
+    public function __construct()
     {
-        $this->auth = $auth;
-        $this->registrar = $registrar;
-
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
