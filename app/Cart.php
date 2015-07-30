@@ -39,6 +39,11 @@ class Cart
         unset($this->items[$id]);
     }
 
+    public function clear()
+    {
+        $this->items = [];
+    }
+
     public function all()
     {
         return $this->items;

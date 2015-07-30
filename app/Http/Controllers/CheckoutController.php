@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.store');
-    }
-
     public function place(Order $orderModel, OrderItem $orderItemModel)
     {
         //Se existe item no carrinho de compras
@@ -32,12 +27,9 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            //Limpa carrinho
-            Session::remove('cart');
+            $cart->clear();
 
-            return "O pedido foi fechado com sucesso!";
-
-            dd($order);
+            return view('store.checkout', compact('order'));
         } else {
             return redirect()->route('cart');
         }

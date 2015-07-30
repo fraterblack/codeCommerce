@@ -3,6 +3,7 @@
 use CodeCommerce\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Contracts\Auth\Guard;
 
 class PasswordController extends Controller {
 
@@ -26,12 +27,11 @@ class PasswordController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
 	 * @return void
 	 */
-	public function __construct(PasswordBroker $passwords)
+	public function __construct(Guard $auth, PasswordBroker $passwords)
 	{
 		$this->auth = $auth;
 		$this->passwords = $passwords;
 
 		$this->middleware('guest');
 	}
-
 }

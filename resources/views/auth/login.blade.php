@@ -1,4 +1,4 @@
-@extends('admin.app')
+@extends('store.store')
 
 @section('content')
 <div class="container-fluid">
@@ -26,14 +26,14 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							<label class="col-md-4 control-label">E-mail</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
+							<label class="col-md-4 control-label">Senha</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password">
 							</div>
@@ -42,9 +42,7 @@
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Remember Me
-									</label>
+									<label><input type="checkbox" name="remember"> Lembrar-me</label>
 								</div>
 							</div>
 						</div>
@@ -53,7 +51,9 @@
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Login</button>
 
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
+								<a class="btn btn-link" href="{{ url('/password/email') }}">Esqueceu sua senha?</a>
+                                <br><br>
+                                <a class="btn btn-default center-block" href="{{ url('/auth/register') }}">Faça seu cadastro</a>
 							</div>
 						</div>
 					</form>

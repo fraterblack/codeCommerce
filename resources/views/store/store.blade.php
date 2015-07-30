@@ -50,8 +50,7 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
-                            <li><a href="{{ route('checkout.place') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            <li><a href="{{ route('account.orders') }}"><i class="fa fa-user"></i> Minha conta</a></li>
                             <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                             @if (Auth::guest())
                                 <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
@@ -60,7 +59,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-unlock"></i> Logout</a></li>
+                                        <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-unlock"></i> Sair</a></li>
                                     </ul>
                                 </li>
                             @endif
@@ -91,7 +90,6 @@
                             <li class="dropdown"><a href="{{ route('home') }}">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="{{ route('home') }}">Produtos</a></li>
-                                    <li><a href="{{ route('checkout.place') }}">Checkout</a></li>
                                     <li><a href="{{ route('cart') }}">Carrinho</a></li>
                                 </ul>
                             </li>
