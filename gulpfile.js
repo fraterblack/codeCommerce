@@ -22,6 +22,10 @@ elixir(function(mix) {
         'price-range.css'
     ], 'public/css/all.css');
 
+    mix.styles([
+        'app.css'
+    ], 'public/css/app.css');
+
     mix.scripts([
         'jquery.js',
         'bootstrap.min.js',
@@ -31,7 +35,7 @@ elixir(function(mix) {
         'main.js'
     ], 'public/js/all.js');
 
-    mix.version(['css/all.css', 'js/all.js']);
+    mix.version(['css/all.css', 'css/app.css', 'js/all.js']);
 
     mix.copy('resources/assets/fonts', 'public/build/fonts');
 });

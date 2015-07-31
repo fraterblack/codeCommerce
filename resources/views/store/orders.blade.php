@@ -11,7 +11,6 @@
             <th>Itens</th>
             <th class="text-center">Valor</th>
             <th class="text-center">Status</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -27,7 +26,6 @@
                 </td>
                 <td class="text-center">{{ number_format($order->total, 2, ',', '.') }}</td>
                 <td class="text-center">{{ $order->text_status }}</td>
-                <td></td>
             </tr>
         @endforeach
 

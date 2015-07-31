@@ -24,23 +24,21 @@ class Order extends Model
 
     public function getTextStatusAttribute()
     {
-        $textStatus = "Não conhecido";
+        return $this->getStatus()[$this->status];
+    }
 
-        switch ($this->status) {
-            case 0:
-                $textStatus = "Aguardando o pagamento";
-                break;
-            case 1:
-                $textStatus = "Aguardando o envio";
-                break;
-            case 2:
-                $textStatus = "Enviado";
-                break;
-            case 3:
-                $textStatus = "Entregue";
-                break;
-        }
+    public function getStatus()
+    {
+        //Status possíveis
+        $status = [
+            -1 => "Falha ao efetuar pagamento",
+            0 => "Aguardando o pagamento",
+            1 => "Pago",
+            2 => "Enviado",
+            3 => "Entregue",
+            4 => "Cancelado"
+        ];
 
-        return $textStatus;
+        return $status;
     }
 }

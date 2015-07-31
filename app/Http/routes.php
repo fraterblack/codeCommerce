@@ -49,6 +49,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
             Route::get('destroy/{id}/image', ['as' => 'admin.products.images.destroy', 'uses' => 'AdminProductsController@destroyImage']);
         });
     });
+
+    //Produtos
+    Route::group(['prefix' => 'orders'], function () {
+        //Lista
+        Route::get('', ['as' => 'admin.orders', 'uses' => 'AdminOrdersController@index']);
+        //Mostra
+        Route::get('{id}/show', ['as' => 'admin.orders.show', 'uses' => 'AdminOrdersController@show']);
+        //Muda Status
+        Route::get('{id}/{status}/update-status', ['as' => 'admin.orders.update_status', 'uses' => 'AdminOrdersController@updateStatus'])->where('qtd', '[\-0-9]+');
+    });
 });
 
 //Loja
@@ -72,7 +82,6 @@ Route::group(['middleware' => 'auth.store'], function () {
     Route::get('account/orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
 });
 
-
 //AUTH
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -80,6 +89,10 @@ Route::controllers([
 ]);
 
 //ESTUDOS
+/*Route::get('evento', function () {
+  event(new \CodeCommerce\Events\CheckoutEvent());
+});*/
+
 /*Route::get('/categories', ['as' => 'categories', 'uses' => 'CategoriesController@index']);
 
 Route::get('/categories/create', ['as' => 'categories.create', 'uses' => 'CategoriesController@create']);

@@ -22,6 +22,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers;
 
+    protected $redirectTo = '/';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -59,12 +61,13 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'street_one' => $data['street_one'],
+            'street_two' => $data['street_two'],
+            'city' => $data['city'],
+            'state' => $data['state'],
+            'country' => $data['country'],
+            'postal_code' => $data['postal_code'],
+            'phone' => $data['phone'],
         ]);
-    }
-
-    //Sobreescreve método da Trait Illuminate\Foundation\Auth\RedirectsUsers;
-    public function redirectPath()
-    {
-        return '/';
     }
 }
