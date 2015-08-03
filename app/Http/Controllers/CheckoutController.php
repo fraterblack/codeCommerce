@@ -17,7 +17,7 @@ class CheckoutController extends Controller
         if (Session::has('cart') && Session::get('cart')->getTotal() > 0) {
             $cart = Session::get('cart');
 
-           $order = $orderModel->create(['user_id' => Auth::user()->id, 'total' => $cart->getTotal()]);
+           $order = $orderModel->create(['user_id' => Auth::user()->id, 'total' => $cart->getTotal(), 'status' => 0]);
 
             foreach ($cart->all() as $k=>$item) {
                 $order->items()->create([
