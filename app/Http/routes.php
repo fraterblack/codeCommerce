@@ -82,13 +82,20 @@ Route::group(['middleware' => 'auth.store'], function () {
     Route::get('account/orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
 });
 
-//AUTH
+//Transações gateway de pagamento
+Route::get('transaction-return/{transaction_reference}', ['as' => 'transaction.return', 'uses' => 'CheckoutController@transactionReturn']);
+Route::get('transaction-notification', ['as' => 'transaction.notification', 'uses' => 'CheckoutController@transactionNotification']);
+
+//Auth
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
 
 //ESTUDOS
+
+//Route::get('test', ['as' => 'test', 'uses' => 'CheckoutController@test']);
+
 /*Route::get('evento', function () {
   event(new \CodeCommerce\Events\CheckoutEvent());
 });*/

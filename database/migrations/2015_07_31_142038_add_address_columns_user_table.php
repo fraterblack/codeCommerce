@@ -31,13 +31,13 @@ class AddAddressColumnsUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->removeColumn('street_one');
-            $table->removeColumn('street_two');
-            $table->removeColumn('city');
-            $table->removeColumn('state');
-            $table->removeColumn('country');
-            $table->removeColumn('postal_code');
-            $table->removeColumn('phone');
+            $table->dropColumn('street_one');
+            $table->dropColumn('street_two');
+            $table->dropColumn('city');
+            $table->dropColumn('state');
+            $table->dropColumn('country');
+            $table->dropColumn('postal_code');
+            $table->dropColumn('phone');
         });
     }
 }

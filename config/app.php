@@ -147,6 +147,8 @@ return [
 		'CodeCommerce\Providers\EventServiceProvider',
 		'CodeCommerce\Providers\RouteServiceProvider',
 
+        'LaravelPagseguro\LaravelPagseguroServiceProvider',
+
 	],
 
 	/*

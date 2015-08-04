@@ -25,7 +25,7 @@ class AddIsAdminUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->removeColumn('id_admin');
+            $table->dropColumn('id_admin');
         });
     }
 }

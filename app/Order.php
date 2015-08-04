@@ -9,7 +9,9 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'total',
-        'status'
+        'status',
+        'payment_transaction_reference',
+        'payment_transaction_code'
     ];
 
     public function items()
@@ -31,12 +33,17 @@ class Order extends Model
     {
         //Status possíveis
         $status = [
-            -1 => "Falha ao efetuar pagamento",
-            0 => "Aguardando o pagamento",
-            1 => "Pago",
-            2 => "Enviado",
-            3 => "Entregue",
-            4 => "Cancelado"
+            1 => "Aguardando o pagamento",
+            2 => "Em análise",
+            3 => "Pago",
+
+            5 => "Em disputa",
+            6 => "Estornado",
+            7 => "Pagamento cancelado",
+
+            10 => "Enviado",
+            12 => "Entregue",
+            13 => "Pedido cancelado"
         ];
 
         return $status;
