@@ -13,15 +13,7 @@
 
         {!! Form::open(['route' => 'admin.categories.store']) !!}
 
-        <div class="form-group">
-            {!! Form::label('name', 'Nome:') !!}
-            {!! Form::text('name', null, ['class' => 'form-control']) !!}
-        </div>
-
-        <div class="form-group">
-            {!! Form::label('description', 'Descrição:') !!}
-            {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
-        </div>
+        @include('admin.categories._form')
 
         <div class="form-group">
             {!! Form::submit('Adicionar Categoria', ['class' => 'btn btn-primary']) !!}

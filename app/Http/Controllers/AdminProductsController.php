@@ -53,7 +53,7 @@ class AdminProductsController extends Controller
         $product = $this->productModel->fill($request->all());
         $product->save();
 
-        $tagsId = $tagModel->store($request->get('tags'));
+        $tagsId = $tagModel->store($request->get('tag_list'));
 
         $product->tags()->attach($tagsId);
 
@@ -97,7 +97,7 @@ class AdminProductsController extends Controller
         $product = $this->productModel->find($id);
         $product->update($request->all());
 
-        $tagsId = $tagModel->store($request->get('tags'));
+        $tagsId = $tagModel->store($request->get('tag_list'));
 
         $product->tags()->sync($tagsId);
 
